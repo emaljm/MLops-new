@@ -3,7 +3,7 @@ preprocessing:
   target_column: "sentiment"
 
 feature_engineering:
-  max_features: 4000
+  max_features: 3500
 
 model_building:
   model_type: "logistic_regression"

@@ -31,11 +31,19 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-pip-
 
+
+
       # 4️⃣ Install dependencies
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
+
+      # 7️⃣ Download NLTK stopwords for preprocessing
+      - name: Download NLTK data
+        run: |
+          python -m pip install --upgrade nltk
+          python -c "import nltk; nltk.download('stopwords')"
 
 
       # 6️⃣ Run DVC pipeline
