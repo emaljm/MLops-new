@@ -1,0 +1,145 @@
+schema: '2.0'
+stages:
+  data_ingestion:
+    cmd: python src/data/data_ingestion.py
+    deps:
+    - path: params.yaml
+      hash: md5
+      md5: 623d76249a4c2b626b032cdebe2d2bed
+      size: 665
+    - path: src/data/data_ingestion.py
+      hash: md5
+      md5: 7155d4c11a09667bc97ebaa1488604ad
+      size: 1005
+    outs:
+    - path: data/raw/train.csv
+      hash: md5
+      md5: aa7d8251fafc4d907ccedbbce90b0d63
+      size: 637649
+  data_preprocessing:
+    cmd: python src/data/data_preprocessing.py
+    deps:
+    - path: data/raw/train.csv
+      hash: md5
+      md5: aa7d8251fafc4d907ccedbbce90b0d63
+      size: 637649
+    - path: params.yaml
+      hash: md5
+      md5: 623d76249a4c2b626b032cdebe2d2bed
+      size: 665
+    - path: src/data/data_ingestion.py
+      hash: md5
+      md5: 7155d4c11a09667bc97ebaa1488604ad
+      size: 1005
+    - path: src/data/data_preprocessing.py
+      hash: md5
+      md5: 5ab69163986301f74c1b78fc62e3038d
+      size: 2299
+    outs:
+    - path: data/processed/processed.csv
+      hash: md5
+      md5: 1c29dbdc9109ec32e339da678aef2785
+      size: 391217
+  feature_engineering:
+    cmd: python src/features/feature_engineering.py
+    deps:
+    - path: data/processed/processed.csv
+      hash: md5
+      md5: 1c29dbdc9109ec32e339da678aef2785
+      size: 391217
+    - path: params.yaml
+      hash: md5
+      md5: 623d76249a4c2b626b032cdebe2d2bed
+      size: 665
+    - path: src/data/data_preprocessing.py
+      hash: md5
+      md5: 5ab69163986301f74c1b78fc62e3038d
+      size: 2299
+    - path: src/features/feature_engineering.py
+      hash: md5
+      md5: b610ebf6f41a044b5021da2ce1dc5e74
+      size: 1852
+    outs:
+    - path: data/features/test_bow.csv
+      hash: md5
+      md5: 01b92dd9fb6c358b47f6480eedf510c5
+      size: 819215
+    - path: data/features/train_bow.csv
+      hash: md5
+      md5: 568978f5bcf77b615d5712c4faf68c18
+      size: 3220201
+    - path: data/models/vectorizer.pkl
+      hash: md5
+      md5: b751417aa72cdb50675363b14fccf6d4
+      size: 98428
+  model_building:
+    cmd: python src/model/model_building.py
+    deps:
+    - path: data/features/train_bow.csv
+      hash: md5
+      md5: 568978f5bcf77b615d5712c4faf68c18
+      size: 3220201
+    - path: params.yaml
+      hash: md5
+      md5: 623d76249a4c2b626b032cdebe2d2bed
+      size: 665
+    - path: src/features/feature_engineering.py
+      hash: md5
+      md5: b610ebf6f41a044b5021da2ce1dc5e74
+      size: 1852
+    - path: src/model/model_building.py
+      hash: md5
+      md5: d87822acea5815fdabe54116aa2c719b
+      size: 1070
+    outs:
+    - path: data/models/model.pkl
+      hash: md5
+      md5: 93111cffd74258699e542a28c77831e5
+      size: 32725
+  model_evaluation:
+    cmd: python src/model/model_evaluation.py
+    deps:
+    - path: data/features/test_bow.csv
+      hash: md5
+      md5: 01b92dd9fb6c358b47f6480eedf510c5
+      size: 819215
+    - path: data/models/model.pkl
+      hash: md5
+      md5: 93111cffd74258699e542a28c77831e5
+      size: 32725
+    - path: params.yaml
+      hash: md5
+      md5: 623d76249a4c2b626b032cdebe2d2bed
+      size: 665
+    - path: src/model/model_building.py
+      hash: md5
+      md5: d87822acea5815fdabe54116aa2c719b
+      size: 1070
+    - path: src/model/model_evaluation.py
+      hash: md5
+      md5: b610bfae2ca480059266ab9e3921a217
+      size: 3615
+    outs:
+    - path: data/metrics/evaluation.json
+      hash: md5
+      md5: 3143b03756a3caf1d6dcdaeb976d81cf
+      size: 130
+    - path: data/metrics/latest_run_id.txt
+      hash: md5
+      md5: 1d110ba198274538a12d773a43eb5e94
+      size: 32
+  register_model:
+    cmd: python src/model/register_model.py
+    deps:
+    - path: data/metrics/latest_run_id.txt
+      hash: md5
+      md5: 1d110ba198274538a12d773a43eb5e94
+      size: 32
+    - path: data/models/model.pkl
+      hash: md5
+      md5: 93111cffd74258699e542a28c77831e5
+      size: 32725
+    - path: src/model/register_model.py
+      hash: md5
+      md5: b47e7544990c170894df289ec8d35b04
+      size: 1571

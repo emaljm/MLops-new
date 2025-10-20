@@ -1,0 +1,6 @@
+artifact_location: file:///C:/Users/Emal%20John%20Manuel/Desktop/MLops-new/mlruns/163090353969118209
+creation_time: 1760960553284
+experiment_id: '163090353969118209'
+last_update_time: 1760960553284
+lifecycle_stage: active
+name: SentimentClassifierExperiment

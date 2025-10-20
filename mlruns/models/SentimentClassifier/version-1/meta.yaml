@@ -1,0 +1,14 @@
+aliases: []
+creation_timestamp: 1760960122643
+current_stage: Staging
+description: null
+last_updated_timestamp: 1760960122702
+name: SentimentClassifier
+run_id: null
+run_link: null
+source: data/models/model.pkl
+status: READY
+status_message: null
+storage_location: data/models/model.pkl
+user_id: null
+version: 1

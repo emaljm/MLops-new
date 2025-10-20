@@ -1,0 +1,4 @@
+Flask
+mlflow
+prometheus-flask-exporter
+gunicorn

@@ -1,0 +1,24 @@
+preprocessing:
+  text_column: "review"
+  target_column: "sentiment"
+
+feature_engineering:
+  max_features: 4000
+
+model_building:
+  model_type: "logistic_regression"
+  penalty: "l1"
+  solver: "liblinear"
+  C: 1.0
+  random_state: 42
+
+data_paths:
+  raw_data: "data/raw/train.csv"
+  processed_data: "data/processed/processed.csv"
+  train_data: "data/processed/train.csv"
+  test_data: "data/processed/test.csv"
+  features_train: "data/features/train_bow.csv"
+  features_test: "data/features/test_bow.csv"
+  model_output: "data/models/model.pkl"
+  vectorizer_output: "data/models/vectorizer.pkl"
+  evaluation_output: "data/metrics/evaluation.json"
