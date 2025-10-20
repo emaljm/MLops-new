@@ -94,7 +94,11 @@ jobs:
           python -m pip install --upgrade nltk
           python -c "import nltk; nltk.download('stopwords')"
 
-
+      # 5️⃣ Download NLTK wordnet
+      - name: Download NLTK data
+        run: |
+          python -m pip install --upgrade nltk
+          python -c "import nltk; nltk.download('wordnet')"
 
       # 7️⃣ Run DVC pipeline
       - name: Reproduce DVC pipeline
