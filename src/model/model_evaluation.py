@@ -16,8 +16,11 @@ from src.logger import logger
 # mlflow.set_experiment("SentimentClassifierExperiment")
 
 # Read credentials from environment variables
-dagshub_user = os.getenv("DAGSHUB_USER")
-dagshub_token = os.getenv("DAGSHUB_TOKEN")
+dagshub_user = os.getenv("MLFLOW_USER")
+dagshub_token = os.getenv("MLFLOW_PASSWORD")
+
+# os.environ["MLFLOW_TRACKING_USERNAME"] = dagshub_user
+# os.environ["MLFLOW_TRACKING_PASSWORD"] = dagshub_token
 
 # Construct tracking URI dynamically
 tracking_uri = f"https://{dagshub_user}:{dagshub_token}@dagshub.com/{dagshub_user}/MLops-new.mlflow"
