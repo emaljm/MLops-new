@@ -36,7 +36,7 @@ tracking_uri = f"https://{dagshub_user}:{dagshub_token}@dagshub.com/{dagshub_use
 mlflow.set_tracking_uri(tracking_uri)
 
 
-MODEL_NAME = "SentimentClassifierExperiment"
+MODEL_NAME = "SentimentClassifier"
 
 
 # ==========================================================

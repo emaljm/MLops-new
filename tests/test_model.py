@@ -4,7 +4,7 @@ import mlflow
 import pickle
 import os
 
-MODEL_NAME = "SentimentClassifierExperiment"
+MODEL_NAME = "SentimentClassifier"
 
 def test_model_load():
     client = mlflow.MlflowClient()
