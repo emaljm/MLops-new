@@ -16,8 +16,9 @@ from src.logger import logger
 # mlflow.set_experiment("SentimentClassifierExperiment")
 
 # Read credentials from environment variables
-dagshub_user = os.getenv("MLFLOW_USER")
-dagshub_token = os.getenv("MLFLOW_PASSWORD")
+dagshub_user = os.getenv("MLFLOW_TRACKING_USERNAME")
+dagshub_token = os.getenv("MLFLOW_TRACKING_PASSWORD")
+
 
 # os.environ["MLFLOW_TRACKING_USERNAME"] = dagshub_user
 # os.environ["MLFLOW_TRACKING_PASSWORD"] = dagshub_token

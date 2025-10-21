@@ -2,11 +2,23 @@
 import mlflow
 from mlflow.tracking import MlflowClient
 # Initialize DagsHub + MLflow
-import dagshub
-dagshub.init(repo_owner="emaljm", repo_name="MLops-new", mlflow=True)
+# import dagshub
+# dagshub.init(repo_owner="emaljm", repo_name="MLops-new", mlflow=True)
+import os
+
+MODEL_NAME = "SentimentClassifierExperiment"
+dagshub_user = os.getenv("MLFLOW_TRACKING_USERNAME")
+dagshub_token = os.getenv("MLFLOW_TRACKING_PASSWORD")
 
 
-MODEL_NAME = "SentimentClassifier"
+# os.environ["MLFLOW_TRACKING_USERNAME"] = dagshub_user
+# os.environ["MLFLOW_TRACKING_PASSWORD"] = dagshub_token
+
+# Construct tracking URI dynamically
+tracking_uri = f"https://{dagshub_user}:{dagshub_token}@dagshub.com/{dagshub_user}/MLops-new.mlflow"
+
+# Set MLflow tracking URI and experiment
+mlflow.set_tracking_uri(tracking_uri)
 
 def promote_best_model(model_name: str = MODEL_NAME):
     client = MlflowClient()
