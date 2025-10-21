@@ -10,9 +10,20 @@ import dagshub
 from src.logger import logger
 
 # ============================
-# Initialize DagsHub + MLflow
-# ============================
-dagshub.init(repo_owner="emaljm", repo_name="MLops-new", mlflow=True)
+# # Initialize DagsHub + MLflow
+# # ============================
+# dagshub.init(repo_owner="emaljm", repo_name="MLops-new", mlflow=True)
+# mlflow.set_experiment("SentimentClassifierExperiment")
+
+# Read credentials from environment variables
+dagshub_user = os.getenv("DAGSHUB_USER")
+dagshub_token = os.getenv("DAGSHUB_TOKEN")
+
+# Construct tracking URI dynamically
+tracking_uri = f"https://{dagshub_user}:{dagshub_token}@dagshub.com/{dagshub_user}/MLops-new.mlflow"
+
+# Set MLflow tracking URI and experiment
+mlflow.set_tracking_uri(tracking_uri)
 mlflow.set_experiment("SentimentClassifierExperiment")
 
 # ============================
