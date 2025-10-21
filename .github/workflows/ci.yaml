@@ -46,4 +46,4 @@ jobs:
         run: pytest tests/ --maxfail=1 --disable-warnings -q
 
       - name: Promote best model to Production
-        run: python src/model/promote_model.py
+        run: python scripts/promote_model.py
