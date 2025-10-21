@@ -22,12 +22,21 @@ REQUEST_LATENCY = Histogram(
     'flask_app_request_latency_seconds', 'Request latency (seconds)'
 )
 
-# MLflow + DagsHub config
-os.environ["MLFLOW_TRACKING_USERNAME"] = "emaljm"
-os.environ["MLFLOW_TRACKING_PASSWORD"] = "addb522777e2d1ad645cebae32b3fb531eb76d4d"
-mlflow.set_tracking_uri("https://dagshub.com/emaljm/MLops-new.mlflow")
+dagshub_user = os.getenv("MLFLOW_TRACKING_USERNAME")
+dagshub_token = os.getenv("MLFLOW_TRACKING_PASSWORD")
 
-MODEL_NAME = "SentimentClassifier"
+
+# os.environ["MLFLOW_TRACKING_USERNAME"] = dagshub_user
+# os.environ["MLFLOW_TRACKING_PASSWORD"] = dagshub_token
+
+# Construct tracking URI dynamically
+tracking_uri = f"https://{dagshub_user}:{dagshub_token}@dagshub.com/{dagshub_user}/MLops-new.mlflow"
+
+# Set MLflow tracking URI and experiment
+mlflow.set_tracking_uri(tracking_uri)
+
+
+MODEL_NAME = "SentimentClassifierExperiment"
 
 
 # ==========================================================
