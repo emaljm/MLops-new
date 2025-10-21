@@ -6,7 +6,7 @@ from mlflow.tracking import MlflowClient
 # dagshub.init(repo_owner="emaljm", repo_name="MLops-new", mlflow=True)
 import os
 
-MODEL_NAME = "SentimentClassifiert"
+MODEL_NAME = "SentimentClassifier"
 dagshub_user = os.getenv("MLFLOW_TRACKING_USERNAME")
 dagshub_token = os.getenv("MLFLOW_TRACKING_PASSWORD")
 
